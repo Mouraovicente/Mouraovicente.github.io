@@ -1,0 +1,86 @@
+<h1 class="mt-4">Clientes</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Cadastro</li>
+</ol>
+<div class="container">
+    <form #clienteForm="ngForm" (ngSubmit)="onSubmit()">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-success" role="alert" *ngIf="success==true">
+                    Cliente salvo com Sucesso!
+                  </div>
+                  <div class="alert alert-danger" role="alert" *ngFor="let erro of erros">
+                      {{erro}}
+                  </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>ID:</label>
+                    <input type="text" class="form-control" disabled= "true" [ngModel]="cliente.id" name="id">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Username:</label>
+                    <input type="text" class="form-control" [(ngModel)]="cliente.username" name="username">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Password:</label>
+                    <input type="password" class="form-control"  [(ngModel)]="cliente.password" name="password">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Email:</label>
+                    <input type="email" class="form-control"  [(ngModel)]="cliente.email" name="email">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Name:</label>
+                    <input type="text" class="form-control"  [(ngModel)]="cliente.name" name="name">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Surname:</label>
+                    <input type="text" class="form-control"  [(ngModel)]="cliente.surname" name="surname">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Telefone:</label>
+                    <input type="text" class="form-control"  [(ngModel)]="cliente.phone" name="telefone">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Ativo:</label>
+                    <input type="checkbox" class="form-control"   [(ngModel)]="cliente.enabled" name="enabled">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-success" >
+                    <i class="fa fa-save"></i>Salvar
+                </button>
+                <button type="button" class="btn btn-danger ml-l" (click)="voltarListagem()" >
+                    <i class="fa fa-arrow-alt-circle-left"></i>Voltar
+                </button>
+            </div>    
+                
+        </div>
+    </form>
+</div>
