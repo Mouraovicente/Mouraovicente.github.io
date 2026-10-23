@@ -5,6 +5,7 @@ import {ClientesService} from '../../clientes.service'
 import {Router} from '@angular/router'
 
 @Component({
+  standalone: false,
   selector: 'app-clientes-form',
   templateUrl: './clientes-form.component.html',
   styleUrls: ['./clientes-form.component.css']
@@ -12,7 +13,7 @@ import {Router} from '@angular/router'
 export class ClientesFormComponent implements OnInit {
  cliente : Cliente;
  success:boolean= false;
- erros: string [];
+ erros: string[] | null = null;
   constructor(private service: ClientesService,private router: Router) { 
      this.cliente = new Cliente();
   }
@@ -21,16 +22,17 @@ export class ClientesFormComponent implements OnInit {
 
 
   onSubmit(){
-    this.service.salvar(this.cliente)
-    .subscribe(response =>{
-      this.success=true
-      this.erros= null
-      this.cliente = response;
-    }), errorResponse => {
-      this.success=false
-      this.erros = errorResponse.error.errors
-      
-    }
+    this.service.salvar(this.cliente).subscribe({
+      next: response => {
+        this.success = true;
+        this.erros = null;
+        this.cliente = response;
+      },
+      error: errorResponse => {
+        this.success = false;
+        this.erros = errorResponse.error.errors;
+      }
+    });
   }
 
 

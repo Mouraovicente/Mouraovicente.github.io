@@ -8,7 +8,7 @@ import { TemplateModule } from './template/template.module';
 import { HomeComponent } from './home/home.component';
 import {ClientesModule} from './clientes/clientes.module';
 import {ClientesService} from './clientes.service';
-import {HttpClientModule} from '@angular/common/http';
+import {provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
 import { ClientesListaComponent } from './clientes/clientes-lista/clientes-lista.component'
 
 @NgModule({
@@ -18,13 +18,13 @@ import { ClientesListaComponent } from './clientes/clientes-lista/clientes-lista
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
     AppRoutingModule,
     TemplateModule,
     ClientesModule
   ],
   providers: [
-    ClientesService
+    ClientesService,
+    provideHttpClient(withInterceptorsFromDi())
   ],
   bootstrap: [AppComponent]
 })
